@@ -30,12 +30,29 @@
 	// $('#theRectangle').resizable() function : defines the functionality when theRectangle is resized by user
 
 
-	var debugging = true;
 
-	function logIt(msg){
-		if (debugging === true)
-			console.log(msg);
+	//first wrap everything up in an aunonymous functon
+
+(function(){
+	var debug = {
+		bug: "",
+		hostname:"",
+		bugMe: function(msg){
+			if (debug.bug === 'debug=true')
+				console.log(msg);
+		}
+	};
+
+	debug.hostname = location.hostname == "" ? "cannot run the script from a local drive" : location.hostname;
+	debug.bug = location.search.substring(1);
+	debug.bugMe("hostname: " + debug.hostname );
+	debug.bugMe("debug switch: " + debug.bug);
+
+	if (debug.hostname !== location.hostname){
+		alert("Sorry, but you " + debug.hostname);
+		return -1;
 	}
+
 
 
 
@@ -43,7 +60,7 @@
 		// Check for the FileList API support.
 
 		if (window.FileList) {
-			logIt('Great news! FileList API is supported.');
+			debug.bugMe('Great news! FileList API is supported.');
 			document.getElementById('supportsHTML5').style.display='block';
 			return true;
 		} else {
@@ -55,8 +72,8 @@
 
 
 
-$(document).ready(function(){
-	$( "#tabs" ).css('display', 'none');
+
+
 	$( "#tabs" ).tabs();
 	// the image width and height are set when the image is read from disk.
 	var trueImageWidth,
@@ -204,7 +221,7 @@ $(document).ready(function(){
 		this.fineTuneSizing = function(currentBackgroundColor, ctx, leftEdge, topEdge, h, w) {
 			var foundEdge = false, mustExpand = false, rightEdge = leftEdge + w, bottomEdge = topEdge + h, xStart, yStart;
 
-			logIt('fine-tuning start. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
+			debug.bugMe('fine-tuning start. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
 
 
 			// fine-tune left
@@ -215,7 +232,7 @@ $(document).ready(function(){
 					if (this.getPixelColor(ctx, leftEdge, i) !== currentBackgroundColor) {
 						leftEdge--;
 						w++;
-						logIt('found color not matching currentBackgroundColor at row '+i+'. Expanding left to '+leftEdge+'. Width is now '+w);
+						debug.bugMe('found color not matching currentBackgroundColor at row '+i+'. Expanding left to '+leftEdge+'. Width is now '+w);
 
 
 						if(leftEdge > 0)
@@ -231,18 +248,18 @@ $(document).ready(function(){
 
 					}
 					else
-						logIt('left position ('+leftEdge+', '+i+')  matches currentBackgroundColor');
+						debug.bugMe('left position ('+leftEdge+', '+i+')  matches currentBackgroundColor');
 				}
 				if (mustExpand === true) {
 					mustExpand = false;
 				}else{
 					foundEdge = true;
-					logIt('left fine-tuned to '+leftEdge);
+					debug.bugMe('left fine-tuned to '+leftEdge);
 				}
-				logIt('found leftEdge: ' + foundEdge);
+				debug.bugMe('found leftEdge: ' + foundEdge);
 			}
 
-			logIt('fine-tuning done with left. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
+			debug.bugMe('fine-tuning done with left. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
 
 			// fine-tune top
 
@@ -254,7 +271,7 @@ $(document).ready(function(){
 					if (this.getPixelColor(ctx, i, topEdge) !== currentBackgroundColor) {
 						topEdge--;
 						h++;
-						logIt('found color not currentBackgroundColor at row '+i+'. Expanding top to '+topEdge+'. Height is now '+h);
+						debug.bugMe('found color not currentBackgroundColor at row '+i+'. Expanding top to '+topEdge+'. Height is now '+h);
 
 
 
@@ -275,18 +292,18 @@ $(document).ready(function(){
 
 					}
 					else
-						logIt('top position ('+i+', '+topEdge+') matches currentBackgroundColor');
+						debug.bugMe('top position ('+i+', '+topEdge+') matches currentBackgroundColor');
 				}
 				if (mustExpand === true) {
 					mustExpand = false;
 				}else{
 					foundEdge = true;
-					logIt('top fine-tuned to '+topEdge);
+					debug.bugMe('top fine-tuned to '+topEdge);
 				}
-				logIt('found topEdge: ' + foundEdge);
+				debug.bugMe('found topEdge: ' + foundEdge);
 			}
 
-			logIt('fine-tuning done with top. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
+			debug.bugMe('fine-tuning done with top. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
 
 			// fine-tune right
 
@@ -299,7 +316,7 @@ $(document).ready(function(){
 					if (this.getPixelColor(ctx, rightEdge, i) !== currentBackgroundColor) {
 						rightEdge++;
 						w++;
-						logIt('found color not matching currentBackgroundColor at row '+i+'. Expanding right to '+rightEdge+'. Width is now '+w);
+						debug.bugMe('found color not matching currentBackgroundColor at row '+i+'. Expanding right to '+rightEdge+'. Width is now '+w);
 
 
 						if(rightEdge < trueImageWidth)
@@ -319,18 +336,18 @@ $(document).ready(function(){
 
 					}
 					else
-						logIt('right position ('+rightEdge+', '+i+') matches currentBackgroundColor');
+						debug.bugMe('right position ('+rightEdge+', '+i+') matches currentBackgroundColor');
 				}
 				if (mustExpand === true) {
 					mustExpand = false;
 				}else{
 					foundEdge = true;
-					logIt('right fine-tuned to '+rightEdge);
+					debug.bugMe('right fine-tuned to '+rightEdge);
 				}
-				logIt('found rightEdge: ' + foundEdge);
+				debug.bugMe('found rightEdge: ' + foundEdge);
 			}
 
-			logIt('fine-tuning done with right. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
+			debug.bugMe('fine-tuning done with right. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
 
 			// fine-tune bottom
 
@@ -343,7 +360,7 @@ $(document).ready(function(){
 					if (this.getPixelColor(ctx, i, bottomEdge) !== currentBackgroundColor) {
 						bottomEdge++;
 						h++
-						logIt('found color not matching currentBackgroundColor at row '+i+'. Expanding bottom to '+bottomEdge+'. Height is now '+h);
+						debug.bugMe('found color not matching currentBackgroundColor at row '+i+'. Expanding bottom to '+bottomEdge+'. Height is now '+h);
 
 
 
@@ -362,18 +379,18 @@ $(document).ready(function(){
 
 					}
 					else
-						logIt('bottom position ('+i+', '+bottomEdge+') matches currentBackgroundColor');
+						debug.bugMe('bottom position ('+i+', '+bottomEdge+') matches currentBackgroundColor');
 				}
 				if (mustExpand === true) {
 					mustExpand = false;
 				}else{
 					foundEdge = true;
-					logIt('bottom fine-tuned to '+bottomEdge);
+					debug.bugMe('bottom fine-tuned to '+bottomEdge);
 				}
-				logIt('found bottomEdge: ' + foundEdge);
+				debug.bugMe('found bottomEdge: ' + foundEdge);
 			}
 
-			logIt('fine-tuning done with bottom. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
+			debug.bugMe('fine-tuning done with bottom. leftEdge: '+leftEdge+' topEdge: '+topEdge+' height: '+h+' width: '+w+' comparing edge pixels to currentBackgroundColor: ' + currentBackgroundColor);
 
 			// in case element extends to edge of the sprite
 
@@ -398,7 +415,7 @@ $(document).ready(function(){
 
 
 
-			logIt('fineTuneSizing() found edges')
+			debug.bugMe('fineTuneSizing() found edges')
 
 /*
 			// remove the 1 pixel BLANK border from the element and the 1 pixel border
@@ -431,7 +448,7 @@ $(document).ready(function(){
 		this.roughSizing = function(currentBackgroundColor, ctx, x, y) {
 			var topEdge, rightEdge, bottomEdge, leftEdge, h, w, color, foundIt = false;
 
-			logIt('roughtSizing() comparing pixels to ' + currentBackgroundColor);
+			debug.bugMe('roughtSizing() comparing pixels to ' + currentBackgroundColor);
 
 			for (topEdge = y; ((topEdge > 0) && (foundIt === false)); topEdge--) {
 				if (this.getPixelColor(ctx, x, topEdge) === currentBackgroundColor) {
@@ -462,7 +479,7 @@ $(document).ready(function(){
 
 			h = bottomEdge - topEdge;
 			w = rightEdge - leftEdge;
-			logIt('roughSizing() getDimensions: start ('+ leftEdge + ', ' + topEdge + ')...end (' + rightEdge + ', ' + bottomEdge + ')');
+			debug.bugMe('roughSizing() getDimensions: start ('+ leftEdge + ', ' + topEdge + ')...end (' + rightEdge + ', ' + bottomEdge + ')');
 
 			this.fineTuneSizing(currentBackgroundColor, ctx, leftEdge, topEdge, h, w);
 		}
@@ -495,12 +512,12 @@ $(document).ready(function(){
 		$('#canvasId').attr('width', 0).attr('height', 0);
 
 		imagesHere = $('.theSpriteImage').size();
-		logIt('number of sprite images in memory: ' + imagesHere);
+		debug.bugMe('number of sprite images in memory: ' + imagesHere);
 		for (i=0; i< imagesHere; i++){
 			$('.theSpriteImage').eq(i).removeAttr('src');
-			logIt('removing src from Id: ' + $('.theSpriteImage').eq(i).attr('id'));
+			debug.bugMe('removing src from Id: ' + $('.theSpriteImage').eq(i).attr('id'));
 		}
-		//logIt('after remove, number of sprite images in memory: '+$('.theSpriteImage').size());
+		//debug.bugMe('after remove, number of sprite images in memory: '+$('.theSpriteImage').size());
 
 
 		$('#theImageWrapper, div#theImageContainer, #theClippedContainer, #theRectangle, #onTop, #theRectangle')
@@ -562,20 +579,20 @@ $(document).ready(function(){
 
 
 					$(canvas).click(function() {
-						logIt('canvas clicked');
+						debug.bugMe('canvas clicked');
 						$('#onTop').css('display', 'block');
 						var colorClicked = theCanvas.getPixelColor(ctx, X, Y);		// different browsers support layerX, pageX, clientX, etc onmousemove
 
 						radio = $('#fgColor').is(':checked');
-						logIt('forground radio button is ' + radio);
+						debug.bugMe('forground radio button is ' + radio);
 						if ($('#fgColor').is(':checked') === true){
 							$('#fgDiv').css('backgroundColor', colorClicked);
 							if (colorClicked !== theCanvas.backgroundColor) {
-								logIt('clicked at position ('+X+', '+Y+') color was '+colorClicked+' backgroundColor: '+ theCanvas.backgroundColor);
+								debug.bugMe('clicked at position ('+X+', '+Y+') color was '+colorClicked+' backgroundColor: '+ theCanvas.backgroundColor);
 								theCanvas.roughSizing(theCanvas.backgroundColor, ctx, X, Y);
 							}
 						}else{
-							logIt('background color clicked: '+colorClicked);
+							debug.bugMe('background color clicked: '+colorClicked);
 
 							if(colorClicked === 'rgba(0, 0, 0, 0)'){
 								$('#bkDiv').css('background', 'url("images/transparent.png") 0 0 repeat');
@@ -641,7 +658,7 @@ $(document).ready(function(){
 
 		if ((keyCode == 38) || (keyCode == 40))	// or (up arrow or down arrow key)
 		{
-			logIt('keyCode: ' + keyCode);
+			debug.bugMe('keyCode: ' + keyCode);
 
 			if (keyCode === 38)		//	was key pressed an arrowUp key?
 			{
@@ -1053,7 +1070,7 @@ $(document).ready(function(){
 			iLeft	= parseInt($('#theImageWrapper').css('left'), 10);
 			dTop	= ui.offset.top  - iTop;
 			dLeft	= ui.offset.left - iLeft;
-			logIt('draggable() returns top: '+(ui.offset.top - iTop) +' left: '+(ui.offset.left - iLeft));
+			debug.bugMe('draggable() returns top: '+(ui.offset.top - iTop) +' left: '+(ui.offset.left - iLeft));
 			dWidth	= $(this).width();
 			dHeight	= $(this).height();
 			dBottom	= dTop  + dHeight;
@@ -1088,6 +1105,8 @@ $(document).ready(function(){
 				imageWidth = trueImageWidth,
 				imageHeight = trueImageHeight;
 
+			$('#theRectangle').css('border', '1px solid #00f');
+
 			$("#theImage").unbind('mousemove'); //no longer need this now that we can see theRectangle.
 			$("#theImage").unbind('downFlag');
 
@@ -1097,11 +1116,11 @@ $(document).ready(function(){
 			rRight  = resizedArea.position.left + resizedArea.size.width;
 			rHeight = resizedArea.size.height;
 			rWidth  = resizedArea.size.width;
-			logIt('resizing ('+rLeft+', '+rTop+') to ('+rRight+', '+rBottom+')');
+			debug.bugMe('resizing ('+rLeft+', '+rTop+') to ('+rRight+', '+rBottom+')');
 
 			if (rHeight > 0){
 				if(resizedArea.position.top <= 0){
-					logIt('Prevented from resizing outside rTop');
+					debug.bugMe('Prevented from resizing outside rTop');
 					rTop = 0;
 				}
 				else{
@@ -1130,7 +1149,7 @@ $(document).ready(function(){
 			}else{
 				if (rWidth > 0){
 					if(rLeft <= 0){
-						logIt('Prevented from resizing outside rLeft');
+						debug.bugMe('Prevented from resizing outside rLeft');
 						rLeft = 0;
 						rRight = rWidth;
 					}
@@ -1160,4 +1179,4 @@ $(document).ready(function(){
 				clipIt();
 			}
 	});
-});
+})();

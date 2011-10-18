@@ -25,6 +25,9 @@
 					<li>
 						<a href="#instructionsTab">Quick Start</a>
 					</li>
+					<li>
+						<a href="#toDoTab">To Do</a>
+					</li>
 				</ul>
 				<div id="inputTab">
 						<!--	<label for='eFile'>Image File Pathname</label>	-->
@@ -37,7 +40,7 @@
 						<div id='supportsHTML5'>
 							<input type="file" id="browsedFileName" tabindex='-1'name="browsedFileName">
 						</div>
-					<fieldset id='fullImageFields' class='rounded'>
+					<fieldset id='fsFullImageFields' class='rounded'>
 						<legend>
 							Image Container
 						</legend>
@@ -64,7 +67,7 @@
 							</div>
 						</div>
 					</fieldset>
-					<fieldset id='theRectangleFields' class='rounded'>
+					<fieldset id='fsTheRectangleFields' class='rounded'>
 						<legend>
 							Selected Area
 						</legend>
@@ -101,7 +104,7 @@
 					</fieldset>
 				</div>
 				<div id="outputTab" class="ui-tabs-hide">
-					<fieldset id='outputFields' class='rounded'>
+					<fieldset id='fsOutputFields' class='rounded'>
 						<legend>
 							CSS For Selected Area
 						</legend>
@@ -115,21 +118,25 @@
 					</fieldset>
 				</div>
 				<div id="instructionsTab" class="ui-tabs-hide">
-					<fieldset id='quickStart' class='rounded'>
+					<fieldset id='fsQuickStart' class='rounded'>
 						<legend>
 							Overview
 						</legend>
 						<p>
 							The image file must first be selected from the local drive. Go to the Input tab and
-							click the button to browse and choose the file. An opaque view of the file will be displayed
+							click the button to browse and choose the file. The sprite file will be displayed
 							to the right.
 						</p>
 						<p>
-							Now click on an image on the sprite. You'll see a rectangle with a blue border grow around the
-							selected area.
+							Default operation is to click on an image on the sprite. You'll see a rectangle with a blue border grow around the
+							selected area. If you wish to expand or reduce the selected area simply click on the sprite
+							outside the presently selected area to cause the border to reappear, then click and drag to
+							manually select the desired area. This is useful for selecting text and other non-contiguous
+							images.
 						</p>
 						<p>
-							If adjustments to the rectangle size, use the mouse along the
+							You can instead click and drag around an image you'd like to select. This is helpful when you wish to
+							select text, or multiple objects. If adjustments to the rectangle size, use the mouse along the
 							inner edges of the rectangle or update the pixel settings on the Input tab to grow or shrink the selection.
 						</p>
 						<p>
@@ -176,6 +183,22 @@
 						</div>
 					</fieldset>
 				</div>
+
+				<div id="toDoTab" class="ui-tabs-hide">
+					<fieldset id='fsToDo' class='rounded'>
+						<legend>
+							Needs
+						</legend>
+						<p>
+							The image file must first be selected from the local drive. Go to the Input tab and
+							click the button to browse and choose the file. An opaque view of the file will be displayed
+							to the right.
+						</p>
+						<p>
+							Presently the script must be restarted each time a new sprite is to be read and displayed.
+						</p>
+					</fieldset>
+				</div>
 			</div>
 			<!-- tabs -->
 		</form>
@@ -193,5 +216,8 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
 		<script type='text/javascript' src='js/clipper.js'></script>
+		<!--
+		<script type='text/javascript' src='js/live.js'></script>
+		-->
 	</body>
 </html>

@@ -33,30 +33,22 @@
 	-webkit-border-radius: 4px/*{cornerRadius}*/;
 	border-radius: 4px/*{cornerRadius}*/;
 	}
-	form#clipForm {position:fixed;top:90px;left:85px;height:530px;width:374px;background:#fff;border:1px solid #000;}
-	fieldset{display:block;margin:10px 20px;background:#ede;width:300px;clear:left;}
+	form#clipForm {position:fixed;top:90px;left:85px;height:680px;width:374px;background:#fff;border:1px solid #000;}
 	legend{text-align:center;font-size:18px;text-shadow: 1px 2px 2px #fff;}
+	fieldset{margin: 0 20px;}
+	#css1Displayed, #css2Displayed{font-size:14px;}
+	#fsTheRectangleFields{position:absolute;top:283px;left:0;height:190px;background-color: #ede;}
+	#fsFullImageFields{	position:absolute; top:115px;left:0;height:140px;background-color: #ede;}
+	/*#fsOutputFields{display:block;margin:10px 0;background:#ede;width:300px;clear:left;}*/
+	#fsOutputFields, #fsQuickStart, #fsToDo{position:absolute;top:70px;left:0;background:#ede;width:300px;}
+/*{position:absolute;top:70px;left:0;height:415px;}*/
 	#contrast {font-size:10px;float:left;padding:10px 0 0 0;background-color: #999;}
 	#contrast a{border:1px solid #777;text-decoration:none;width:10px;height:15px;} /*button*/
 	#contrastSlider{width:103px;margin:10px 0 0 15px;}
-	#tabs{height:50px;border:none;}
-	#tabs a {text-shadow: 1px 1px 2px #ebe;}
+	#tabs{height:50px;border:none;display:none;height:100%;}
+	#tabs a {text-shadow: 1px 1px 2px #ebe;font-size: 14px;}
 	div#instructionsTab p {font-size:15px;margin-top:0;}
 
-	#fullImageFields{
-	position:absolute;
-	top:115px;
-	left:0;
-	height:140px;
-	background-color: #ede; /*rgba(136, 136, 136, .3);			/*opacity:.3;  hex 88 = 136 */
-	}
-	#theRectangleFields{
-	position:absolute;
-	top:283px;
-	left:0;
-	height:190px;
-	background-color: #ede; /*rgba(119, 119, 119, .1);			/*opacity:.1;*/  /* hex 77 = dec 119 */
-	}
 	#notSupported, #supportsHTML5 {margin-bottom:5px;}
 	.amt{}
 	.amtw{background-color: #cd9dcd;margin-right:2px;}	/* the two shades of pink separating height and width */
@@ -64,7 +56,7 @@
 	#fgDiv, #bkDiv {
 		width:100%;
 		height:20px;
-		font-size:10px; 
+		font-size:10px;
 		text-shadow: 1px 1px 2px #fff;
 		text-align:left;
 		padding-bottom:2px
@@ -74,12 +66,9 @@
 		background:url('../images/transparent.png') 0 0 repeat;
 		}
 	input[type=radio] {width:10px; background-color:lime;}
-	#outputFields{position:absolute;top:70px;left:0;height:415px;}
-	#css1Displayed, #css2Displayed{font-size:14px;}
-	#quickStart{position:absolute;top:70px;left:0;height:415px;}
 	/* diagram */
 	#referenceFields{display:none;position:absolute;top:50px;left:0;height:260px;}
-	#referenceFields legend{padding:0;}
+	/*#referenceFields legend, #toDo legend{padding:0;}*/
 	div.rel {width:100%;height:252px;position:relative;}
 	div#refOriginalElement{z-index:10;position:absolute;top:21px;left:6px;height:200px;width:270px;border:1px dashed #999;background-color:#bb5;}
 	div#refDescription{position:absolute;top:80px;left:175px;height:80px;width:100px;text-align:center;}
