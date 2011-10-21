@@ -33,12 +33,12 @@
 	-webkit-border-radius: 4px/*{cornerRadius}*/;
 	border-radius: 4px/*{cornerRadius}*/;
 	}
-	form#clipForm {position:fixed;top:90px;left:85px;height:680px;width:374px;background:#fff;border:1px solid #000;}
-	legend{text-align:center;font-size:18px;text-shadow: 1px 2px 2px #fff;}
-	fieldset{margin: 0 20px;}
+	form#clipForm {position:absolute;top:90px;left:85px;height:725px;width:365px;background:#fff;border:1px solid #000;}
+	legend{text-align:center;font-size:16px;text-shadow: 1px 2px 2px #fff;}
+	fieldset{margin: 0 20px;width: 300px;}
 	#css1Displayed, #css2Displayed{font-size:14px;}
-	#fsTheRectangleFields{position:absolute;top:283px;left:0;height:190px;background-color: #ede;}
 	#fsFullImageFields{	position:absolute; top:115px;left:0;height:140px;background-color: #ede;}
+	#fsTheRectangleFields{position:absolute;top:283px;left:0;height:190px;background-color: #ede;}
 	/*#fsOutputFields{display:block;margin:10px 0;background:#ede;width:300px;clear:left;}*/
 	#fsOutputFields, #fsQuickStart, #fsToDo{position:absolute;top:70px;left:0;background:#ede;width:300px;}
 /*{position:absolute;top:70px;left:0;height:415px;}*/
